@@ -118,7 +118,7 @@ export default function CustomRequest() {
                           <FormItem>
                             <FormLabel>WhatsApp Number *</FormLabel>
                             <FormControl>
-                              <Input placeholder="+91 98765 43210" {...field} data-testid="input-whatsapp" />
+                              <Input placeholder="+91 7028945423" {...field} data-testid="input-whatsapp" />
                             </FormControl>
                             <FormDescription>We'll contact you here</FormDescription>
                             <FormMessage />
@@ -303,7 +303,7 @@ export default function CustomRequest() {
                   Chat with us directly on WhatsApp for immediate assistance
                 </p>
                 <Button asChild variant="outline" className="w-full" data-testid="button-whatsapp">
-                  <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/7028945423" target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Chat on WhatsApp
                   </a>

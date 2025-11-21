@@ -111,13 +111,13 @@ export default function Contact() {
                 <p className="text-sm text-muted-foreground mb-4">
                   Fastest way to reach us
                 </p>
-                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/7028945423" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="w-full" data-testid="button-whatsapp">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Chat Now
                   </Button>
                 </a>
-                <p className="text-sm font-semibold mt-3">+91 98765 43210</p>
+                <p className="text-sm font-semibold mt-3">+91 7028945423</p>
               </CardContent>
             </Card>
 
@@ -149,13 +149,13 @@ export default function Contact() {
                 <p className="text-sm text-muted-foreground mb-4">
                   Mon-Sat, 9 AM - 8 PM IST
                 </p>
-                <a href="tel:+919876543210">
+                <a href="tel:+917028945423">
                   <Button variant="outline" className="w-full" data-testid="button-phone">
                     <Phone className="w-4 h-4 mr-2" />
                     Call Now
                   </Button>
                 </a>
-                <p className="text-sm font-semibold mt-3">+91 98765 43210</p>
+                <p className="text-sm font-semibold mt-3">+91 7028945423</p>
               </CardContent>
             </Card>
           </div>
@@ -249,7 +249,7 @@ export default function Contact() {
                     <MapPin className="w-5 h-5 text-primary mt-0.5" />
                     <div>
                       <h3 className="font-semibold mb-1">Location</h3>
-                      <p className="text-sm text-muted-foreground">Bangalore, Karnataka, India</p>
+                      <p className="text-sm text-muted-foreground">Ch.sambhaji nagar, Maharashtra, India</p>
                     </div>
                   </div>
                 </CardContent>
@@ -278,7 +278,7 @@ export default function Contact() {
                     Can't find the answer you're looking for? Contact us directly on WhatsApp for instant support.
                   </p>
                   <Button asChild variant="secondary" className="w-full" data-testid="button-faq-whatsapp">
-                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/917028945423" target="_blank" rel="noopener noreferrer">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Chat on WhatsApp
                     </a>

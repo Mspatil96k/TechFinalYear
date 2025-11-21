@@ -42,7 +42,7 @@ export default function AboutUs() {
                   TechFinalYear was founded by a team of experienced engineers who understand the challenges students face during their final year projects. We've been there, and we know how crucial this phase is for your academic success.
                 </p>
                 <p>
-                  With over 5 years of experience in the industry, our team has successfully delivered more than 5000+ projects to students across India. We specialize in providing complete project solutions with 100% support, from conceptualization to final presentation.
+                  With over 3 years of experience in the industry, our team has successfully delivered more than 5000+ projects to students across India. We specialize in providing complete project solutions with 100% support, from conceptualization to final presentation.
                 </p>
                 <p>
                   Our mission is simple: to ensure every student gets a high-quality project with complete understanding and support, enabling them to excel in their final year and kickstart their careers with confidence.
@@ -68,10 +68,10 @@ export default function AboutUs() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: Trophy, value: "5000+", label: "Projects Delivered" },
-              { icon: Users, value: "4500+", label: "Happy Students" },
+              { icon: Trophy, value: "500+", label: "Projects Delivered" },
+              { icon: Users, value: "450+", label: "Happy Students" },
               { icon: Award, value: "7+", label: "Engineering Branches" },
-              { icon: Target, value: "5+", label: "Years of Experience" },
+              { icon: Target, value: "3+", label: "Years of Experience" },
             ].map((stat, idx) => (
               <Card key={idx} className="text-center" data-testid={`stat-card-${idx}`}>
                 <CardContent className="p-6">
@@ -189,7 +189,7 @@ export default function AboutUs() {
               {
                 icon: Trophy,
                 title: "Proven Track Record",
-                description: "5000+ successfully delivered projects with 98% student satisfaction rate speaks for our reliability.",
+                description: "500+ successfully delivered projects with 98% student satisfaction rate speaks for our reliability.",
               },
             ].map((item, idx) => (
               <Card key={idx} className="hover-elevate active-elevate-2 transition-all duration-300" data-testid={`trust-card-${idx}`}>

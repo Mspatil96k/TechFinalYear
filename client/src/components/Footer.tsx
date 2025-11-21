@@ -73,8 +73,8 @@ export function Footer() {
             <h3 className="font-heading font-semibold text-lg mb-4">Contact</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Email: support@techfinalyear.com</li>
-              <li>Phone: +91 98765 43210</li>
-              <li>WhatsApp: +91 98765 43210</li>
+              <li>Phone: +91 7028945423</li>
+              <li>WhatsApp: +91 7028945423</li>
               <li className="pt-2">
                 <div className="flex gap-2">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" className="h-6 opacity-60" />

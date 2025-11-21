@@ -1,5 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import express from "express";
+import path from "path";
 import { storage } from "./storage";
 import {
   insertProjectSchema,
@@ -10,6 +12,10 @@ import {
 } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Serve static images from attached_assets
+  app.use("/assets", express.static(path.resolve(import.meta.dirname, "..", "attached_assets")));
+  // Serve static files from client/public (for favicon, etc.)
+  app.use(express.static(path.resolve(import.meta.dirname, "..", "client", "public")));
   app.get("/api/projects", async (_req, res) => {
     try {
       const projects = await storage.getAllProjects();
@@ -107,6 +113,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Invalid request data", details: result.error.errors });
       }
       const request = await storage.createCustomRequest(result.data);
+      
+      // Log new custom request for admin visibility
+      console.log("\n" + "=".repeat(60));
+      console.log("📋 NEW CUSTOM PROJECT REQUEST RECEIVED");
+      console.log("=".repeat(60));
+      console.log(`Name: ${request.name}`);
+      console.log(`Branch: ${request.branch}`);
+      console.log(`WhatsApp: ${request.whatsapp}`);
+      if (request.email) console.log(`Email: ${request.email}`);
+      if (request.projectTitle) console.log(`Project Title: ${request.projectTitle}`);
+      console.log(`Requirements: ${request.requirements.substring(0, 100)}${request.requirements.length > 100 ? '...' : ''}`);
+      if (request.deadline) console.log(`Deadline: ${request.deadline}`);
+      if (request.budget) console.log(`Budget: ₹${request.budget}`);
+      console.log(`Status: ${request.status}`);
+      console.log(`Request ID: ${request.id}`);
+      console.log("=".repeat(60) + "\n");
+      
       res.status(201).json(request);
     } catch (error: any) {
       console.error("Error creating custom request:", error);
@@ -131,6 +154,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Invalid inquiry data", details: result.error.errors });
       }
       const inquiry = await storage.createInquiry(result.data);
+      
+      // Log new inquiry for admin visibility
+      console.log("\n" + "=".repeat(60));
+      console.log("💬 NEW INQUIRY RECEIVED");
+      console.log("=".repeat(60));
+      console.log(`Name: ${inquiry.name}`);
+      console.log(`Branch: ${inquiry.branch}`);
+      console.log(`WhatsApp: ${inquiry.whatsapp}`);
+      console.log(`Requirement: ${inquiry.requirement.substring(0, 100)}${inquiry.requirement.length > 100 ? '...' : ''}`);
+      console.log(`Inquiry ID: ${inquiry.id}`);
+      console.log("=".repeat(60) + "\n");
+      
       res.status(201).json(inquiry);
     } catch (error: any) {
       console.error("Error creating inquiry:", error);

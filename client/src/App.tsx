@@ -12,6 +12,7 @@ import ProjectDetail from "@/pages/ProjectDetail";
 import CustomRequest from "@/pages/CustomRequest";
 import AboutUs from "@/pages/AboutUs";
 import Contact from "@/pages/Contact";
+import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/custom-request" component={CustomRequest} />
       <Route path="/about" component={AboutUs} />
       <Route path="/contact" component={Contact} />
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );

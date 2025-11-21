@@ -61,7 +61,7 @@ export function Navigation() {
 
           <div className="hidden lg:flex items-center gap-3">
             <Button asChild variant="outline" size="sm" data-testid="button-whatsapp-nav">
-              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/7028945423" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 WhatsApp Support
               </a>
@@ -108,7 +108,7 @@ export function Navigation() {
             </Link>
             <div className="pt-2 space-y-2">
               <Button asChild variant="outline" className="w-full" size="sm" data-testid="button-mobile-whatsapp">
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/7028945423" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp Support
                 </a>

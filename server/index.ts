@@ -7,22 +7,35 @@ const app = express();
 
 // Configure CORS for production deployment
 // Allow requests from frontend domain (Hostinger) to backend (Railway)
-const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") ?? [
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",").map(o => o.trim()).filter(Boolean) ?? [
   "https://techfinalyear.com",
   "https://www.techfinalyear.com",
   "http://localhost:3000", // Allow local development
   "http://localhost:5173", // Allow Vite dev server
 ];
 
+// Also allow Railway domains for testing (any *.up.railway.app)
+const isRailwayDomain = (origin: string) => origin.includes(".up.railway.app");
+
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
+      
+      // Allow Railway domains for testing
+      if (isRailwayDomain(origin)) {
+        return callback(null, true);
+      }
+      
+      // Check if origin is in allowed list
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        // Log the rejected origin for debugging
+        console.log(`[CORS] Rejected origin: ${origin}`);
+        console.log(`[CORS] Allowed origins: ${allowedOrigins.join(", ")}`);
+        callback(new Error(`Not allowed by CORS. Origin: ${origin}`));
       }
     },
     credentials: true,

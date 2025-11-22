@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
+import { socialLinks } from "@/config/socialLinks";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,16 +17,44 @@ export function Footer() {
               We provide complete support for engineering and diploma final year projects with 100% guidance, documentation, and code.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2" data-testid="link-facebook">
+              <a 
+                href={socialLinks.facebook} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2 hover:bg-primary hover:text-primary-foreground transition-colors" 
+                data-testid="link-facebook"
+                aria-label="Visit our Facebook page"
+              >
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2" data-testid="link-twitter">
+              <a 
+                href={socialLinks.twitter} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2 hover:bg-primary hover:text-primary-foreground transition-colors" 
+                data-testid="link-twitter"
+                aria-label="Visit our Twitter page"
+              >
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2" data-testid="link-instagram">
+              <a 
+                href={socialLinks.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2 hover:bg-primary hover:text-primary-foreground transition-colors" 
+                data-testid="link-instagram"
+                aria-label="Visit our Instagram page"
+              >
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2" data-testid="link-linkedin">
+              <a 
+                href={socialLinks.linkedin} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-md bg-secondary flex items-center justify-center hover-elevate active-elevate-2 hover:bg-primary hover:text-primary-foreground transition-colors" 
+                data-testid="link-linkedin"
+                aria-label="Visit our LinkedIn page"
+              >
                 <Linkedin className="w-4 h-4" />
               </a>
             </div>

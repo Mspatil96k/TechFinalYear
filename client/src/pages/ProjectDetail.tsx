@@ -206,9 +206,20 @@ export default function ProjectDetail() {
                 </div>
 
                 <div className="space-y-3">
-                  <Button className="w-full" size="lg" data-testid="button-order-main">
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Order This Project
+                  <Button 
+                    asChild
+                    className="w-full" 
+                    size="lg" 
+                    data-testid="button-order-main"
+                  >
+                    <a 
+                      href={`https://wa.me/7028945423?text=Hi! I'm interested in ordering the project: ${encodeURIComponent(project.title)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      Order This Project
+                    </a>
                   </Button>
                   <Button
                     asChild
@@ -217,7 +228,7 @@ export default function ProjectDetail() {
                     size="lg"
                     data-testid="button-whatsapp-inquiry"
                   >
-                    <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/7028945423" target="_blank" rel="noopener noreferrer">
                       <MessageCircle className="w-5 h-5 mr-2" />
                       WhatsApp Inquiry
                     </a>

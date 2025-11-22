@@ -1,230 +1,216 @@
-# Fix Missing Assets on Hostinger
+# Fix Missing Assets in Hostinger - Troubleshooting Guide
 
-## Problem: Assets (CSS, JS, Images) Not Showing
+## 🔍 Problem: Assets Not Showing After Extraction
 
-If your website loads but styles/images/functionality is missing, the assets folder might not be uploaded correctly.
+If your website loads but CSS, JavaScript, or images are missing, follow these steps:
 
 ---
 
-## ✅ Quick Fix Steps
+## Step 1: Verify File Structure in Hostinger
 
-### Step 1: Verify Assets Folder Location
-
-**In Hostinger File Manager:**
+### Check in Hostinger File Manager:
 
 1. **Go to** `public_html` folder
-2. **Check if you see**:
+2. **Verify you see**:
    ```
    public_html/
-   ├── index.html
-   ├── favicon.ico
-   └── assets/          ← This folder MUST exist here
+   ├── index.html          ✅
+   ├── favicon.ico         ✅
+   └── assets/             ✅ (This folder MUST exist!)
        ├── index-CqlhMjie.js
-       ├── index-sL4TnIl.css
-       └── (image files)
+       ├── index-sLm4TnIl.css
+       ├── Homepage_hero_engineering_students_7b530f3f-1a6OriIv.png
+       └── About_page_workspace_photo_beabd40b-CCJOeVj_.png
    ```
 
-**If `assets/` folder is missing or in wrong location:**
-- The assets weren't extracted properly
-- You need to re-upload them
+### If assets folder is missing:
+
+**Problem**: The `assets/` folder wasn't extracted properly.
+
+**Solution**:
+1. Re-upload the ZIP file
+2. Make sure to extract ALL files (not just index.html)
+3. Verify the `assets/` folder appears after extraction
 
 ---
 
-### Step 2: Check File Permissions
+## Step 2: Check File Permissions
 
-**In Hostinger File Manager:**
+### In Hostinger File Manager:
 
 1. **Right-click on `assets` folder**
 2. **Click "Change Permissions"** or "File Permissions"
-3. **Set to**: `755` (for folders) or `644` (for files)
-4. **Apply to all files and subfolders**
+3. **Set permissions to**: `755` (for folders) or `644` (for files)
+   - **Folders**: `755` (rwxr-xr-x)
+   - **Files**: `644` (rw-r--r--)
 
-**OR use these permissions:**
-- Folders: `755`
-- Files: `644`
-
----
-
-### Step 3: Verify Assets Folder Contents
-
-**In Hostinger File Manager:**
-
-1. **Click on `assets` folder**
-2. **You should see these files**:
-   - `index-CqlhMjie.js` (or similar .js file)
-   - `index-sL4TnIl.css` (or similar .css file)
-   - `About_page_workspace_photo_beabd40b-CCJOeVj_.png`
-   - `Homepage_hero_engineering_students_7b530f3f-1a6OriIv.png`
-
-**If files are missing:**
-- Re-upload the assets folder
+**OR use these commands** (if you have SSH access):
+```bash
+chmod 755 assets/
+chmod 644 assets/*
+```
 
 ---
 
-### Step 4: Re-Upload Assets Folder (If Missing)
+## Step 3: Verify Assets Folder Location
 
-**Option A: Upload Individual Files**
+### Common Mistake: Assets in Wrong Location
 
-1. **In File Manager**, go to `public_html`
-2. **Create `assets` folder** (if it doesn't exist)
-3. **Click "Upload"**
-4. **Select all files from** `dist/public/assets/` on your computer:
-   - `index-CqlhMjie.js`
-   - `index-sL4TnIl.css`
-   - All PNG image files
-5. **Upload them to `assets` folder**
+**Wrong Structure:**
+```
+public_html/
+├── index.html
+└── public_html/          ← Wrong! Nested folder
+    └── assets/
+```
 
-**Option B: Re-Upload ZIP and Extract**
+**Correct Structure:**
+```
+public_html/
+├── index.html
+└── assets/               ← Correct! Directly in public_html
+```
 
-1. **Delete everything** in `public_html` (except keep a backup)
-2. **Re-upload** `techfinalyear-frontend.zip`
-3. **Extract again**, making sure all files go to `public_html` root
+**Fix**: If assets are in a subfolder, move them to `public_html/assets/`
 
 ---
 
-### Step 5: Check Browser Console for Errors
+## Step 4: Check Browser Console for Errors
 
 1. **Open your website**: `https://techfinalyear.com`
-2. **Press F12** (or right-click → Inspect)
+2. **Press F12** (or Cmd+Option+I on Mac) to open DevTools
 3. **Go to "Console" tab**
 4. **Look for errors** like:
-   - `404 Not Found: /assets/index-xxxxx.js`
-   - `Failed to load resource: /assets/...`
+   - `404 Not Found` for assets
+   - `Failed to load resource`
+   - `CORS error`
 
-**This tells you which files are missing.**
+### Common Errors:
 
----
+**Error**: `404 - /assets/index-xxxxx.js not found`
+- **Cause**: Assets folder missing or wrong location
+- **Fix**: Verify assets folder is in `public_html/assets/`
 
-### Step 6: Clear Browser Cache
-
-**Sometimes old cached files cause issues:**
-
-1. **Press Ctrl+Shift+R** (Windows/Linux) or **Cmd+Shift+R** (Mac)
-2. **OR** clear browser cache:
-   - Chrome: Settings → Privacy → Clear browsing data
-   - Firefox: Settings → Privacy → Clear Data
+**Error**: `403 Forbidden`
+- **Cause**: File permissions issue
+- **Fix**: Set folder permissions to 755, file permissions to 644
 
 ---
 
-## 🔍 Common Issues & Solutions
+## Step 5: Re-upload Assets Manually (If Needed)
+
+If assets still don't work:
+
+### Method 1: Re-upload ZIP and Extract Again
+
+1. **Delete** everything in `public_html` (except keep a backup)
+2. **Re-upload** `techfinalyear-frontend.zip`
+3. **Extract** again, making sure ALL files extract
+4. **Verify** `assets/` folder appears
+
+### Method 2: Upload Assets Folder Separately
+
+1. **In Hostinger File Manager**, go to `public_html`
+2. **Click "Upload"**
+3. **Select the entire `assets` folder** from your local `dist/public/assets/`
+4. **Upload** it to `public_html`
+5. **Verify** the structure is: `public_html/assets/`
+
+---
+
+## Step 6: Verify Asset Paths in index.html
+
+The `index.html` should reference assets like this:
+
+```html
+<script type="module" crossorigin src="/assets/index-CqlhMjie.js"></script>
+<link rel="stylesheet" crossorigin href="/assets/index-sLm4TnIl.css">
+```
+
+**Note**: The paths start with `/assets/` (absolute path from root)
+
+**If paths are wrong** (like `./assets/` or `assets/`), the build might be incorrect.
+
+---
+
+## Step 7: Clear Browser Cache
+
+Sometimes old cached files cause issues:
+
+1. **Hard refresh**: `Ctrl+Shift+R` (Windows) or `Cmd+Shift+R` (Mac)
+2. **Or clear cache**: Browser Settings → Clear browsing data → Cached images and files
+
+---
+
+## Step 8: Test Asset URLs Directly
+
+Try accessing assets directly in browser:
+
+1. **JavaScript**: `https://techfinalyear.com/assets/index-CqlhMjie.js`
+2. **CSS**: `https://techfinalyear.com/assets/index-sL4TnIl.css`
+3. **Image**: `https://techfinalyear.com/assets/Homepage_hero_engineering_students_7b530f3f-1a6OriIv.png`
+
+**Expected**: Files should load/download
+**If 404**: Assets folder is missing or in wrong location
+**If 403**: File permissions issue
+
+---
+
+## Quick Fix Checklist
+
+- [ ] ✅ `assets/` folder exists in `public_html/`
+- [ ] ✅ `assets/` folder contains: `.js`, `.css`, and image files
+- [ ] ✅ File permissions: folders `755`, files `644`
+- [ ] ✅ No nested folders (assets directly in public_html)
+- [ ] ✅ Browser console shows no 404 errors
+- [ ] ✅ Direct asset URLs work (test in browser)
+- [ ] ✅ Browser cache cleared
+
+---
+
+## Most Common Issues & Solutions
 
 ### Issue 1: Assets Folder Not Extracted
+**Symptom**: Only `index.html` and `favicon.ico` visible
+**Solution**: Re-extract ZIP, make sure to extract ALL files
 
-**Symptoms:**
-- Website loads but no styling
-- Console shows 404 errors for assets
-
-**Solution:**
-1. Check if `assets/` folder exists in `public_html`
-2. If missing, re-extract ZIP or manually upload assets folder
-
----
-
-### Issue 2: Assets in Wrong Location
-
-**Wrong:**
-```
-public_html/
-└── public/
-    └── assets/  ❌ Wrong location
-```
-
-**Correct:**
-```
-public_html/
-└── assets/  ✅ Correct location
-```
-
-**Solution:**
-- Move `assets/` folder to `public_html` root level
-
----
+### Issue 2: Assets in Subfolder
+**Symptom**: Assets at `public_html/public/assets/` instead of `public_html/assets/`
+**Solution**: Move assets folder to `public_html/assets/`
 
 ### Issue 3: File Permissions
+**Symptom**: 403 Forbidden errors
+**Solution**: Set permissions: folders `755`, files `644`
 
-**Symptoms:**
-- Files exist but return 403 Forbidden errors
-
-**Solution:**
-1. Set folder permissions to `755`
-2. Set file permissions to `644`
-3. Apply recursively to all files
+### Issue 4: Missing Files in ZIP
+**Symptom**: Some assets missing
+**Solution**: Rebuild and recreate ZIP: `npm run build` then create new ZIP
 
 ---
 
-### Issue 4: Case Sensitivity
+## Rebuild and Recreate ZIP (If Needed)
 
-**Symptoms:**
-- Files exist but still 404 errors
+If assets are still missing, rebuild:
 
-**Solution:**
-- Make sure folder name is exactly `assets` (lowercase)
-- Not `Assets` or `ASSETS`
+```bash
+cd /Users/meghrajshinde/Desktop/TechFinalYear
+npm run build
+cd dist/public
+zip -r ../../techfinalyear-frontend.zip .
+```
 
----
-
-## 📋 Verification Checklist
-
-After fixing, verify:
-
-- [ ] `assets/` folder exists in `public_html`
-- [ ] `assets/` contains `.js` and `.css` files
-- [ ] `assets/` contains image files (PNG)
-- [ ] File permissions are correct (755 for folders, 644 for files)
-- [ ] Browser console shows no 404 errors
-- [ ] Website styles load correctly
-- [ ] Images display correctly
-- [ ] JavaScript functionality works
+Then re-upload to Hostinger.
 
 ---
 
-## 🧪 Test Your Fix
+## Still Not Working?
 
-1. **Visit**: `https://techfinalyear.com`
-2. **Open DevTools** (F12) → **Network tab**
-3. **Reload page** (Ctrl+R or Cmd+R)
-4. **Check all requests**:
-   - ✅ `/assets/index-xxxxx.js` → Status 200
-   - ✅ `/assets/index-xxxxx.css` → Status 200
-   - ✅ Image files → Status 200
-
-**If all show 200 OK**, assets are loading correctly! ✅
+1. **Check Hostinger File Manager** - Take a screenshot of `public_html` folder structure
+2. **Check Browser Console** - Copy any error messages
+3. **Test Direct URLs** - Try accessing assets directly
+4. **Verify ZIP Contents** - Make sure ZIP has all assets before uploading
 
 ---
 
-## 🚨 Still Not Working?
-
-### Check These:
-
-1. **File paths in index.html**:
-   - Should be: `/assets/index-xxxxx.js`
-   - Not: `./assets/` or `assets/` (without leading slash)
-
-2. **HTTPS vs HTTP**:
-   - Make sure you're accessing via HTTPS
-   - Mixed content (HTTP/HTTPS) can block assets
-
-3. **CDN or caching**:
-   - Disable any CDN/caching temporarily
-   - Test with direct file access: `https://techfinalyear.com/assets/index-xxxxx.js`
-
-4. **Contact Hostinger Support**:
-   - If files exist but still not loading
-   - May be server configuration issue
-
----
-
-## 💡 Quick Re-Upload Script
-
-If you need to re-upload, here's what to do:
-
-1. **On your computer**, go to: `dist/public/assets/`
-2. **Select all files** in that folder
-3. **Create a ZIP** of just the assets folder
-4. **Upload to Hostinger** `public_html/assets/`
-5. **Extract** the ZIP in the `assets` folder
-
----
-
-**Most common issue: Assets folder not extracted or in wrong location. Check Step 1 first!**
+**Most likely issue**: Assets folder wasn't extracted properly. Re-extract the ZIP file and verify the `assets/` folder appears in `public_html/`.
 

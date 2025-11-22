@@ -217,8 +217,8 @@ export default function ProjectDetail() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <ShoppingCart className="w-5 h-5 mr-2" />
-                      Order This Project
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Order This Project
                     </a>
                   </Button>
                   <Button

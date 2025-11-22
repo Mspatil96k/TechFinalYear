@@ -1,0 +1,16 @@
+QUICK FIX FOR 403 FORBIDDEN ERROR IN HOSTINGER:
+
+1. Log in to Hostinger hPanel
+2. Go to File Manager → public_html
+3. Right-click on "assets" folder
+4. Click "Change Permissions" or "File Permissions"
+5. Enter: 755
+6. CHECK "Recursive" or "Apply to all subfolders and files"
+7. Click "Save"
+
+This will set:
+- Folders: 755 (rwxr-xr-x)
+- Files: 644 (rw-r--r--)
+
+Then test: https://techfinalyear.com/assets/index-CqlhMjie.js
+Should load (not show 403)

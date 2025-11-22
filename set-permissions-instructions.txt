@@ -1,0 +1,23 @@
+HOSTINGER FILE PERMISSIONS - QUICK REFERENCE
+============================================
+
+In Hostinger File Manager:
+
+1. public_html folder → 755
+2. index.html → 644
+3. favicon.ico → 644
+4. assets folder → 755
+5. All files in assets/ → 644
+
+HOW TO SET:
+-----------
+1. Right-click file/folder
+2. Click "Change Permissions" or "Permissions"
+3. Enter: 755 (folders) or 644 (files)
+4. Check "Apply recursively" for folders
+5. Click "Save" or "Change"
+
+TEST:
+-----
+Visit: https://techfinalyear.com
+Should load without 403 error!

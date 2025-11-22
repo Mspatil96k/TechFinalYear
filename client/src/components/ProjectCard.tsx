@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import type { Project } from "@shared/schema";
+import { getImageUrl } from "@/lib/queryClient";
 
 interface ProjectCardProps {
   project: Project;
@@ -14,9 +15,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="aspect-video bg-muted overflow-hidden">
         {project.thumbnail ? (
           <img
-            src={project.thumbnail}
+            src={getImageUrl(project.thumbnail)}
             alt={project.title}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              // Fallback if image fails to load
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">

@@ -27,7 +27,7 @@ export default function Admin() {
 
   // Admin password - Change this to your secure password
   // In production, use environment variable: import.meta.env.VITE_ADMIN_PASSWORD
-  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || "admin123";
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || "Ms962365@";
 
   useEffect(() => {
     // Check if already authenticated (stored in sessionStorage)

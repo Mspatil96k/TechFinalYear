@@ -180,3 +180,7 @@ If permissions are correct but still getting 403:
 
 **Most likely fix**: Set `assets` folder to `755` with recursive option enabled. This should fix the 403 Forbidden error! ✅
 
+
+
+
+

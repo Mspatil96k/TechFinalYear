@@ -145,3 +145,7 @@ After uploading new build:
 
 **Upload the new ZIP to Hostinger and project images should now display correctly!** 🎉
 
+
+
+
+
